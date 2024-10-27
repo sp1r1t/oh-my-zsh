@@ -1,4 +1,4 @@
-# Random hostname color
+# random hostname color
 hex=$(echo $(hostname) | md5sum | cut -d ' ' -f 1 | awk '{print toupper($0)}')
 code=$(echo "ibase=16; $hex % E5 + 1" | bc)
 hostcolor=$(printf "%03d\n" $code)
