@@ -1,9 +1,14 @@
-# random hostname color
+# hostname color
 hex=$(echo $(hostname) | md5sum | cut -d ' ' -f 1 | awk '{print toupper($0)}')
 code=$(echo "ibase=16; $hex % E5 + 1" | bc)
 hostcolor=$(printf "%03d\n" $code)
 
-PROMPT='%{$fg_no_bold[cyan]%}%n%{$FG[061]%}➜%{$FG[229]%}%3~$(git_prompt_info)%{$reset_color%}» '
+# user color
+hex=$(echo $(whoami) | md5sum | cut -d ' ' -f 1 | awk '{print toupper($0)}')
+code=$(echo "ibase=16; $hex % E5 + 1" | bc)
+usercolor=$(printf "%03d\n" $code)
+
+PROMPT='%{$FG[$usercolor]%}%n%{$FG[061]%}➜%{$FG[229]%}%3~$(git_prompt_info)%{$reset_color%}» '
 RPROMPT='%{$FG[253]%}[%{$FG[$hostcolor]%}%m%{$FG[253]%}][%*]'
 
 # git theming
