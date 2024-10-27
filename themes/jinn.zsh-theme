@@ -10,7 +10,7 @@ code=$(echo "ibase=16; ($hex + 62) % E5 + 1" | bc)
 usercolor=$(printf "%03d\n" $code)
 
 PROMPT='%{$FG[$usercolor]%}%n%{$FG[061]%}➜%{$FG[229]%}%3~$(git_prompt_info)%{$reset_color%}» '
-RPROMPT='%{$FG[253]%}[%{$FG[$hostcolor]%}%m%{$FG[253]%}][%*]'
+RPROMPT='%(?.%{$FG[034]%}✓ %{$reset_color%}.%{$FG[196]%}%? ✗ %{$reset_color%})%{$FG[253]%}[%{$FG[$hostcolor]%}%m%{$FG[253]%}][%*]'
 
 # git theming
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}(%{$fg_no_bold[red]%}"
